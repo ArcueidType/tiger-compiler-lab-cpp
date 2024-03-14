@@ -1,3 +1,3 @@
-# AllStuRead
+# Tiger Compiler Lab CPP Implementation
 
-team AllStuRead's repo
+## Select corespond branch for source code
