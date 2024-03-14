@@ -5,31 +5,42 @@
 namespace A {
 int A::CompoundStm::MaxArgs() const {
   // TODO: put your code here (lab1).
-
+  int args1 = stm1->MaxArgs();
+  int args2 = stm2->MaxArgs();
+  return args1 > args2 ? args1 : args2;
 }
 
 Table *A::CompoundStm::Interp(Table *t) const {
   // TODO: put your code here (lab1).
+  Table *temp_table = stm1->Interp(t);
+  Table *table = stm2->Interp(temp_table);
+  return table;
 }
 
 int A::AssignStm::MaxArgs() const {
   // TODO: put your code here (lab1).
-
+  int args = exp->MaxArgs();
+  return args;
 }
 
 Table *A::AssignStm::Interp(Table *t) const {
   // TODO: put your code here (lab1).
-
+  IntAndTable *int_and_table = exp->InterpExp(t);
+  Table *table = int_and_table->t->Update(id, int_and_table->i);
+  return table;
 }
 
 int A::PrintStm::MaxArgs() const {
   // TODO: put your code here (lab1).
-
+  int args1 = exps->NumExps();
+  int args2 = exps->MaxArgs();
+  return args1 > args2 ? args1 : args2;
 }
 
 Table *A::PrintStm::Interp(Table *t) const {
   // TODO: put your code here (lab1).
-  
+  IntAndTable *int_and_table = exps->Interp(t);
+  return int_and_table->t;
 }
 
 int IdExp::MaxArgs() const {
